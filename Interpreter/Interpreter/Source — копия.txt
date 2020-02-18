@@ -1,0 +1,12 @@
+var
+c:=a+b; 
+{c:=a+1.1e12+100-25.32-e5;}
+{M: GOTO M;}
+c := 'dshfdh';
+
+a>=b
+a=b
+a>-b
+
+
+end.

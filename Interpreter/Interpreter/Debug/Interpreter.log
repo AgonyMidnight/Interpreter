@@ -1,0 +1,7 @@
+﻿  Function.cpp
+  Interpreter.cpp
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(24,118): warning C4305: инициализация: усечение из "int" в "char"
+  Создание кода...
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(24,84): warning C4309: инициализация: усечение константного значения
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Function.cpp(99): warning C4715: WhatIsIt: значение возвращается не при всех путях выполнения
+  Interpreter.vcxproj -> C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Debug\Interpreter.exe
