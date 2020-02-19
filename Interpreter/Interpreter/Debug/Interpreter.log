@@ -1,8 +1,5 @@
 ﻿  Interpreter.cpp
 C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(51,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(65,24): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(72,24): warning C4018: <: несоответствие типов со знаком и без знака
-Interpreter.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl getP_Seven(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,class std::basic_fstream<char,struct std::char_traits<char> > &)" (?getP_Seven@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHAAV?$basic_fstream@DU?$char_traits@D@std@@@2@@Z) в функции _main
-    Указание на символы, которые определены и могут подойти:
-      "int __cdecl getP_Seven(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,class std::basic_fstream<char,struct std::char_traits<char> > &,class std::basic_fstream<char,struct std::char_traits<char> > &)" (?getP_Seven@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHAAV?$basic_fstream@DU?$char_traits@D@std@@@2@1@Z)
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Debug\Interpreter.exe : fatal error LNK1120: неразрешенных внешних элементов: 1
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(67,24): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(75,24): warning C4018: <: несоответствие типов со знаком и без знака
+  Interpreter.vcxproj -> C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Debug\Interpreter.exe

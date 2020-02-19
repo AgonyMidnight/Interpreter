@@ -23,10 +23,10 @@ void Begin(std::fstream& FIdentity, std::ifstream& FSource, std::fstream& FOut,
 	}
 }
 
-void setMatrix(std::ifstream& Table, std::string (&MyMatrix)[13][11]) {
+void setMatrix(std::ifstream& Table, std::string (&MyMatrix)[12][13]) {
 	Table.open("table.txt");
-	for (int i = 0; i < 13; i++) {
-		for (int j = 0; j < 11; j++) {
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 13; j++) {
 			Table >> MyMatrix[i][j];
 		}
 	}
@@ -61,30 +61,38 @@ void Add_String_Const(std::string temp, int S, std::fstream& FOut, std::fstream&
 void getP_Two(std::ifstream& WorkWord, std::string parsbuff, std::fstream& FOut, std::fstream& FIdentity,int I) {
 	WorkWord.clear();
 	WorkWord.seekg(0);
+	bool find = false;
 	std::string temp = " ";
 	while (!WorkWord.eof()) {
 		WorkWord >> temp;
 		if (parsbuff == temp) {
 			WorkWord >> temp;
 			FOut << temp;
+			find = true;
 		}
 	}
-	getP_One(FIdentity, parsbuff, FOut, I);
+	if (find == false) {
+		getP_One(FIdentity, parsbuff, FOut, I);
+	}
 }
 
 
 void getP_One(std::fstream& FIdentity, std::string parsbuff, std::fstream& FOut, int I) {
 	FIdentity.clear();
 	FIdentity.seekg(0);
+	bool find = false;;
 	std::string temp = " ";
 	while (!FIdentity.eof()) {
 		FIdentity >> temp;
 		if (parsbuff == temp) {
 			FIdentity >> temp;
 			FOut << temp;
+			find = true;
 		}
 	}
-	Add_word(parsbuff, I, FOut, FIdentity);
+	if (find == false) {
+		Add_word(parsbuff, I, FOut, FIdentity);
+	}
 }
 void getP_Three(std::fstream& FNumber, std::fstream& FOut, int N, std::string parsBuff) {
 	N ++;
@@ -135,7 +143,7 @@ int getP_Seven(std::string buff, int i, int S, std::fstream& FOut, std::fstream&
 	return i;
 }
 
-std::string getFindDecision(int AnyLexem, int status, std::string(&MyMatrix)[13][11]) {
+std::string getFindDecision(int AnyLexem, int status, std::string(&MyMatrix)[12][13]) {
 	return MyMatrix[status][AnyLexem];
 }
 
@@ -158,14 +166,14 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 	if (parsbuff == '.') { return 2; }
 	if (parsbuff == '<') { return 3; }
 	if (parsbuff == '<') { return 4; }
-	if (parsbuff == ('+' || '-' || '*' || '^')) { return 5; }
+	if (parsbuff == '+' || parsbuff == '-' || parsbuff == '*' || parsbuff == '^') { return 5; }
 	if (parsbuff == '=') { return 6; }
 	if (parsbuff == 'e') { return 7; }
 	if (parsbuff == '\'') { return 8; }
-	if (parsbuff == '\'') { return 9; }
-	if (parsbuff == (' ' || ',' || ';' || ':')) { return 10; }
+	if (parsbuff == '/') { return 9; }
+	if (parsbuff == ' ' || parsbuff == ',' || parsbuff == ';' || parsbuff == ':') { return 10; }
 	if (parsbuff == '\n') { return 11; }
-	if (parsbuff == '\0') { return 11; }
+	if (parsbuff == '\0') { return 12; }
 }
 void SemanticOperationOne(char temp, int temp2, std::string move ) {
 

@@ -35,7 +35,7 @@ std::fstream FOutRPN;
 int main()
 {
 	Begin(FIdentity, FSource, FOut, FOutRPN, FWorkWord, FNumber,FDelimiters, FOperations, FString);
-	std::string MyMatrix[13][11];
+	std::string MyMatrix[12][13];
 	setMatrix(Table, MyMatrix);
 	std::string buff="";
 	std::string parsBuff = "";
@@ -53,58 +53,68 @@ int main()
 			if ((move.length() <= 2) && (move != "F")) {
 				status = stoi(move);
 				parsBuff = parsBuff + buff[i];
-				break;
+				continue;
 			}
 			if (move == "F") {
 				setF();
 			}
 			if (move.length() > 2) {
 				if (move[2] == ',') {
-					firstParsMove = move[0] + move[1];
+					firstParsMove = "";
+					secondParsMove = "";
+					firstParsMove = firstParsMove + move[0] + move[1];
 					status = stoi(firstParsMove);
 					for (int j = 3; j < move.length(); j++) {
 						secondParsMove = secondParsMove + move[j];
 					}
+					//parsBuff = parsBuff + buff[i];
 				}
 				else if(move[1]==','){
 					firstParsMove = move[0];
 					status = stoi(firstParsMove);
-					for (int j = 3; j < move.length(); j++) {
+					for (int j = 2; j < move.length(); j++) {
 						secondParsMove = secondParsMove + move[j];
 					}
+					//parsBuff = parsBuff + buff[i];
 				}
 				if (secondParsMove == "P1"){
-					getP_One(FIdentity, parsBuff, FOut,I);
+					getP_One(FIdentity, parsBuff, FOut,++I);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff =""; move = ""; firstParsMove = ""; secondParsMove = "";
+				
 				}
 				else if (secondParsMove == "P2") {
-					getP_Two(FWorkWord, parsBuff, FOut, FIdentity, I);
+					getP_Two(FWorkWord, parsBuff, FOut, FIdentity, ++I);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					
 				}
 				else if (secondParsMove == "P3") {
 					getP_Three(FNumber, FOut, N, parsBuff);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
+					--i; continue;
 				}
 				else if (secondParsMove == "P4") {
 					getP_Four(parsBuff,FDelimiters,FOut);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					--i; continue;
 				}
 				else if (secondParsMove == "P5") {
 					getP_Five(parsBuff, FOperations, FOut);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
+					--i; continue;
 				}
 				else if (secondParsMove == "P6") {
-					getP_Six(parsBuff, buff[i]);
+					parsBuff = getP_Six(parsBuff, buff[i]);
 				}
 				else if (secondParsMove == "P7") {
-					i = getP_Seven(buff, i, ++S , FOut);
+					i = getP_Seven(buff, i, ++S , FOut, FString);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
+					--i; continue;
 				}
 
 			}
