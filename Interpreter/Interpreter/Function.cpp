@@ -58,7 +58,7 @@ void Add_String_Const(std::string temp, int S, std::fstream& FOut, std::fstream&
 	FOut << "S" << S;
 }
 
-bool getP_Two(std::ifstream& WorkWord, std::string parsbuff, std::fstream& FOut, std::fstream& FIdentity,int I) {
+void getP_Two(std::ifstream& WorkWord, std::string parsbuff, std::fstream& FOut, std::fstream& FIdentity,int I) {
 	WorkWord.clear();
 	WorkWord.seekg(0);
 	std::string temp = " ";
@@ -67,15 +67,13 @@ bool getP_Two(std::ifstream& WorkWord, std::string parsbuff, std::fstream& FOut,
 		if (parsbuff == temp) {
 			WorkWord >> temp;
 			FOut << temp;
-			return true;
 		}
 	}
 	getP_One(FIdentity, parsbuff, FOut, I);
-	return false;
 }
 
 
-bool getP_One(std::fstream& FIdentity, std::string parsbuff, std::fstream& FOut, int I) {
+void getP_One(std::fstream& FIdentity, std::string parsbuff, std::fstream& FOut, int I) {
 	FIdentity.clear();
 	FIdentity.seekg(0);
 	std::string temp = " ";
@@ -84,11 +82,9 @@ bool getP_One(std::fstream& FIdentity, std::string parsbuff, std::fstream& FOut,
 		if (parsbuff == temp) {
 			FIdentity >> temp;
 			FOut << temp;
-			return true;
 		}
 	}
 	Add_word(parsbuff, I, FOut, FIdentity);
-	return false;
 }
 void getP_Three(std::fstream& FNumber, std::fstream& FOut, int N, std::string parsBuff) {
 	N ++;
@@ -159,6 +155,17 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 			return 1;
 		}
 	}
+	if (parsbuff == '.') { return 2; }
+	if (parsbuff == '<') { return 3; }
+	if (parsbuff == '<') { return 4; }
+	if (parsbuff == ('+' || '-' || '*' || '^')) { return 5; }
+	if (parsbuff == '=') { return 6; }
+	if (parsbuff == 'e') { return 7; }
+	if (parsbuff == '\'') { return 8; }
+	if (parsbuff == '\'') { return 9; }
+	if (parsbuff == (' ' || ',' || ';' || ':')) { return 10; }
+	if (parsbuff == '\n') { return 11; }
+	if (parsbuff == '\0') { return 11; }
 }
 void SemanticOperationOne(char temp, int temp2, std::string move ) {
 

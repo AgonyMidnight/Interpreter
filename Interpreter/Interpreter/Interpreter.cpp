@@ -1,7 +1,4 @@
-﻿// Interpreter.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include "Header.h"
+﻿#include "Header.h"
 
 int W = 20;		//счетчик словаря
 int O = 11;		//операторов
@@ -22,7 +19,7 @@ extern char Book[53] = { 'q','Q','w','W','e','E','r','R','t','T','y','Y','u',
 extern char Number[10] = { '0', '1', '2', '3', '4', '5','6','7','8','9' };
 
 //словарь разделителей
-extern char Delimiters[19] = { '<', '>', ',', '.','(',')',';',':','[',']',' ','_', '..','-','"','\'', '{', '}' , '=' };
+//extern char Delimiters[19] = { '<', '>', ',', '.','(',')',';',':','[',']',' ','_', '..','-','"','\'', '{', '}' , '=' };
 
 std::ifstream Table;
 std::ifstream FWorkWord;
@@ -37,7 +34,7 @@ std::fstream FOutRPN;
 
 int main()
 {
-	Begin(FIdentity, FSource, FOut, FOutRPN, FWorkWord, FNumber,FDelimiters, FOperations);
+	Begin(FIdentity, FSource, FOut, FOutRPN, FWorkWord, FNumber,FDelimiters, FOperations, FString);
 	std::string MyMatrix[13][11];
 	setMatrix(Table, MyMatrix);
 	std::string buff="";
@@ -48,12 +45,12 @@ int main()
 	std::string secondParsMove = "";
 
 	while (!FSource.eof()){
-		std::getline(FSource, buff);
+		std::getline(FSource, buff);// var := 1 + b
 		int status = 0;
 
 		for (int i = 0; i < buff.length(); i++) {
 			move = getFindDecision(WhatIsIt(buff[i], Book, Number), status, MyMatrix);
-			if ((move.length <= 2) && (move != "F")) {
+			if ((move.length() <= 2) && (move != "F")) {
 				status = stoi(move);
 				parsBuff = parsBuff + buff[i];
 				break;
@@ -61,18 +58,18 @@ int main()
 			if (move == "F") {
 				setF();
 			}
-			if (move.length > 2) {
+			if (move.length() > 2) {
 				if (move[2] == ',') {
 					firstParsMove = move[0] + move[1];
 					status = stoi(firstParsMove);
-					for (int j = 3; j < move.length; j++) {
+					for (int j = 3; j < move.length(); j++) {
 						secondParsMove = secondParsMove + move[j];
 					}
 				}
 				else if(move[1]==','){
 					firstParsMove = move[0];
 					status = stoi(firstParsMove);
-					for (int j = 3; j < move.length; j++) {
+					for (int j = 3; j < move.length(); j++) {
 						secondParsMove = secondParsMove + move[j];
 					}
 				}
@@ -105,7 +102,7 @@ int main()
 					getP_Six(parsBuff, buff[i]);
 				}
 				else if (secondParsMove == "P7") {
-					i = getP_Seven(buff, i, S += 1, FOut);
+					i = getP_Seven(buff, i, ++S , FOut);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
 				}
