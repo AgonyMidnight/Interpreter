@@ -155,6 +155,7 @@ void setF() {
 }
 
 int WhatIsIt(char parsbuff, char Book[], char Number []) {
+	if (parsbuff == 'e') { return 7; } //экспериментальная функция
 	for (int i = 0; i < 52; i++) {
 		if (parsbuff == Book[i]) {
 			return 0;
@@ -167,13 +168,13 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 	}
 	if (parsbuff == '.') { return 2; }
 	if (parsbuff == '<') { return 3; }
-	if (parsbuff == '<') { return 4; }
+	if (parsbuff == '>') { return 4; }
 	if (parsbuff == '+' || parsbuff == '-' || parsbuff == '*' || parsbuff == '^') { return 5; }
 	if (parsbuff == '=') { return 6; }
-	if (parsbuff == 'e') { return 7; }
+	//if (parsbuff == 'e') { return 7; }
 	if (parsbuff == '\'') { return 8; }
 	if (parsbuff == '/') { return 9; }
-	if (parsbuff == ' ' || parsbuff == ',' || parsbuff == ';' || parsbuff == ':' || parsbuff == '('
+	if (parsbuff == ' ' || parsbuff == ',' || parsbuff == ';'  || parsbuff == '('
 		|| parsbuff == ')' || parsbuff == '[' || parsbuff == ']' ) { return 10; }
 	if (parsbuff == '\n') { return 11; }
 	if (parsbuff == '\0') { return 12; }

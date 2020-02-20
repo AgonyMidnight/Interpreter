@@ -54,13 +54,13 @@ int main()
 	bool dve_tochki = false;
 
 	while (!FSource.eof()){
-		std::getline(FSource, buff);// var := 1 + b
+		std::getline(FSource, buff);// var := 1 + b;
 		int status = 0;
 
 		for (int i = 0; i < buff.length() || parsBuff != ""; i++) {
 			move = getFindDecision(WhatIsIt(buff[i], Book, Number), status, MyMatrix);
 			
-			if ((move.length() <= 2) && (move != "F")) {
+			if ((move.length() <= 2) && (move != "F") && (move != "Z")) {
 				status = stoi(move);
 				parsBuff = parsBuff + buff[i];
 				continue;
@@ -68,6 +68,7 @@ int main()
 			if (move == "F") {
 				setF();
 			}
+			if (move == "Z") { std::cout << "U are sun"; FOut.close();  system("Out.txt");exit(0); }
 	
 			if (move.length() > 2) {
 				if (move[2] == ',') {
@@ -98,7 +99,9 @@ int main()
 				else if (secondParsMove == "P2") {
 					getP_Two(FWorkWord, parsBuff, FOut, FIdentity, ++I);
 					//status = 0;
+					
 					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
+					if (status == 0) { parsBuff = ""; }
 					
 				}
 				else if (secondParsMove == "P3") {
@@ -111,12 +114,14 @@ int main()
 					getP_Three(FNumber, FOut, ++N, parsBuff);
 					//status = 0;
 					parsBuff = buff[i]; move = ""; 
-					
-					if (firstParsMove == "11") {	//исправление косяка с двумя подряд разделителями
+					//туточки?
+
+					if (firstParsMove == "11" || status == 14) {	//исправление косяка с двумя подряд разделителями
 						i++;	
 					}
 
 					firstParsMove = ""; secondParsMove = "";
+					if (status == 16) i++; //от сглаза двух палочек
 					--i; continue;
 				}
 				else if (secondParsMove == "P4") {
@@ -125,25 +130,34 @@ int main()
 						dve_tochki = false;
 						i++;
 					}
+					
 					getP_Four(parsBuff,FDelimiters,FOut);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					if (status == 14) i++;	//исправление косяка с := после пробела
 					--i; continue;
+					
 				}
 				else if (secondParsMove == "P5") {
 					getP_Five(parsBuff, FOperations, FOut);
 					//status = 0;
 					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
-					--i; continue;
+					if (!(status == 1 || status == 2 || status == 3))  //траблы с двойной буквой
+						--i;
+					continue;
+					//тут?) при 3
+
 				}
 				else if (secondParsMove == "P6") {
 					parsBuff = getP_Six(parsBuff, buff[i]);
+					move = ""; firstParsMove = ""; secondParsMove = "";
 				}
 				else if (secondParsMove == "P7") {
 					i = getP_Seven(buff, i, ++S , FOut, FString);
 					//status = 0;
-					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
-					--i; continue;
+					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					//--i; 
+					continue;
 				}
 
 			}
@@ -155,7 +169,7 @@ int main()
 	FNumber.close();
 	FString.close();
 
-
+	std::cout << "U R sun" << std::endl;
 	system("Out.txt");
 	//system("Number.txt");
 	//system("String.txt");

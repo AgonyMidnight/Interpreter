@@ -1,2 +1,14 @@
 
-ab23 I11
+a1 I12
+a2 I13
+b1 I14
+b2 I15
+c1 I16
+c2 I17
+x I18
+y I19
+d I20
+dx I21
+dy I22
+writeln I25
+readln I26
