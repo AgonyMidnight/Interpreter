@@ -1,5 +1,6 @@
 ﻿#include "Header.h"
 
+
 int W = 20;		//счетчик словаря
 int O = 11;		//операторов
 int I = 10;		//инициализация
@@ -21,21 +22,27 @@ extern char Number[10] = { '0', '1', '2', '3', '4', '5','6','7','8','9' };
 //словарь разделителей
 //extern char Delimiters[19] = { '<', '>', ',', '.','(',')',';',':','[',']',' ','_', '..','-','"','\'', '{', '}' , '=' };
 
+
+
 std::ifstream Table;
 std::ifstream FWorkWord;
-std::fstream FIdentity;
+std::fstream FIdentity;//
 std::fstream FDelimiters;
 std::fstream FOperations;
-std::fstream FString;
+std::fstream FString;//
 std::ifstream FSource;
-std::fstream FOut;
-std::fstream FNumber;
+std::fstream FOut; //
+std::fstream FNumber;//
 std::fstream FOutRPN;
 
 int main()
 {
+	system("del Out.txt");
+	system("del Number.txt");
+	system("del String.txt");
+	system("del Identity.txt");
 	Begin(FIdentity, FSource, FOut, FOutRPN, FWorkWord, FNumber,FDelimiters, FOperations, FString);
-	std::string MyMatrix[12][13];
+	std::string MyMatrix[m1][m2];
 	setMatrix(Table, MyMatrix);
 	std::string buff="";
 	std::string parsBuff = "";
@@ -44,12 +51,15 @@ int main()
 	std::string firstParsMove = "";
 	std::string secondParsMove = "";
 
+	bool dve_tochki = false;
+
 	while (!FSource.eof()){
 		std::getline(FSource, buff);// var := 1 + b
 		int status = 0;
 
-		for (int i = 0; i < buff.length(); i++) {
+		for (int i = 0; i < buff.length() || parsBuff != ""; i++) {
 			move = getFindDecision(WhatIsIt(buff[i], Book, Number), status, MyMatrix);
+			
 			if ((move.length() <= 2) && (move != "F")) {
 				status = stoi(move);
 				parsBuff = parsBuff + buff[i];
@@ -58,6 +68,7 @@ int main()
 			if (move == "F") {
 				setF();
 			}
+	
 			if (move.length() > 2) {
 				if (move[2] == ',') {
 					firstParsMove = "";
@@ -77,6 +88,7 @@ int main()
 					}
 					//parsBuff = parsBuff + buff[i];
 				}
+			
 				if (secondParsMove == "P1"){
 					getP_One(FIdentity, parsBuff, FOut,++I);
 					//status = 0;
@@ -86,16 +98,33 @@ int main()
 				else if (secondParsMove == "P2") {
 					getP_Two(FWorkWord, parsBuff, FOut, FIdentity, ++I);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
 					
 				}
 				else if (secondParsMove == "P3") {
-					getP_Three(FNumber, FOut, N, parsBuff);
+					/////ПРОВЕРИТЬ!!!!!111111111!!!!!!!!!!!!!!!ВАЖНААА!ааАААаааа!!11111ОДИН!!!АДЫН!!!!
+					if (firstParsMove == "15") {	//исправлени косяка с 7.
+						parsBuff.resize(parsBuff.size() - 1);
+						dve_tochki = true;
+					}
+					
+					getP_Three(FNumber, FOut, ++N, parsBuff);
 					//status = 0;
-					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
+					parsBuff = buff[i]; move = ""; 
+					
+					if (firstParsMove == "11") {	//исправление косяка с двумя подряд разделителями
+						i++;	
+					}
+
+					firstParsMove = ""; secondParsMove = "";
 					--i; continue;
 				}
 				else if (secondParsMove == "P4") {
+					if (firstParsMove == "0" && dve_tochki == true) {
+						parsBuff += '.';
+						dve_tochki = false;
+						i++;
+					}
 					getP_Four(parsBuff,FDelimiters,FOut);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
@@ -119,7 +148,17 @@ int main()
 
 			}
 		}
+		FOut << std::endl;
 	}
-	
+	FOut.close();
+	FIdentity.close();
+	FNumber.close();
+	FString.close();
+
+
+	system("Out.txt");
+	//system("Number.txt");
+	//system("String.txt");
+	system("Identity.txt");
 }
 

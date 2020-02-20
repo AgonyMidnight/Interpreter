@@ -1,5 +1,7 @@
 #include "Header.h"
 
+
+
 void Begin(std::fstream& FIdentity, std::ifstream& FSource, std::fstream& FOut, 
 	std::fstream& FOutRPN, std::ifstream& FWorkWord, std::fstream& FNumber,
 	std::fstream& FDelimiters, std::fstream& FOperations, std::fstream& FString) {
@@ -23,10 +25,10 @@ void Begin(std::fstream& FIdentity, std::ifstream& FSource, std::fstream& FOut,
 	}
 }
 
-void setMatrix(std::ifstream& Table, std::string (&MyMatrix)[12][13]) {
+void setMatrix(std::ifstream& Table, std::string (&MyMatrix)[m1][m2]) {
 	Table.open("table.txt");
-	for (int i = 0; i < 12; i++) {
-		for (int j = 0; j < 13; j++) {
+	for (int i = 0; i < m1; i++) {
+		for (int j = 0; j < m2; j++) {
 			Table >> MyMatrix[i][j];
 		}
 	}
@@ -37,7 +39,7 @@ void Add_word(std::string temp, int I, std::fstream& FOut, std::fstream& FIdenti
 	FIdentity.clear();
 	FIdentity.seekg(0);
 	FIdentity << std::endl << temp << " " << "I" << I;
-	FOut << "I" << I;
+	FOut << "I" << I << " ";
 
 }
 
@@ -67,7 +69,7 @@ void getP_Two(std::ifstream& WorkWord, std::string parsbuff, std::fstream& FOut,
 		WorkWord >> temp;
 		if (parsbuff == temp) {
 			WorkWord >> temp;
-			FOut << temp;
+			FOut << temp<< " ";
 			find = true;
 		}
 	}
@@ -86,7 +88,7 @@ void getP_One(std::fstream& FIdentity, std::string parsbuff, std::fstream& FOut,
 		FIdentity >> temp;
 		if (parsbuff == temp) {
 			FIdentity >> temp;
-			FOut << temp;
+			FOut << temp << " ";
 			find = true;
 		}
 	}
@@ -99,7 +101,7 @@ void getP_Three(std::fstream& FNumber, std::fstream& FOut, int N, std::string pa
 	FNumber.clear();
 	FNumber.seekg(0);
 	FNumber << std::endl << parsBuff << " " << "N" << N;
-	FOut << "N" << N;
+	FOut << "N" << N << " ";
 }
 
 void getP_Four(std::string parsBuff, std::fstream& FDelimiters, std::fstream& FOut) {
@@ -110,7 +112,7 @@ void getP_Four(std::string parsBuff, std::fstream& FDelimiters, std::fstream& FO
 		FDelimiters >> temp;
 		if (parsBuff == temp) {
 			FDelimiters >> temp;
-			FOut << temp;
+			FOut << temp << " ";
 		}
 	}
 }
@@ -123,7 +125,7 @@ void getP_Five(std::string parsBuff, std::fstream& FOperations, std::fstream& FO
 		FOperations >> temp;
 		if (parsBuff == temp) {
 			FOperations >> temp;
-			FOut << temp;
+			FOut << temp<< " ";
 		}
 	}
 }
@@ -139,11 +141,11 @@ int getP_Seven(std::string buff, int i, int S, std::fstream& FOut, std::fstream&
 		temp = temp + buff[i];
 	}
 	FString << temp << " "<< "S" << S<<std::endl;
-	FOut << "S" << S;
+	FOut << "S" << S << " ";
 	return i;
 }
 
-std::string getFindDecision(int AnyLexem, int status, std::string(&MyMatrix)[12][13]) {
+std::string getFindDecision(int AnyLexem, int status, std::string(&MyMatrix)[m1][m2]) {
 	return MyMatrix[status][AnyLexem];
 }
 
@@ -171,9 +173,12 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 	if (parsbuff == 'e') { return 7; }
 	if (parsbuff == '\'') { return 8; }
 	if (parsbuff == '/') { return 9; }
-	if (parsbuff == ' ' || parsbuff == ',' || parsbuff == ';' || parsbuff == ':') { return 10; }
+	if (parsbuff == ' ' || parsbuff == ',' || parsbuff == ';' || parsbuff == ':' || parsbuff == '('
+		|| parsbuff == ')' || parsbuff == '[' || parsbuff == ']' ) { return 10; }
 	if (parsbuff == '\n') { return 11; }
 	if (parsbuff == '\0') { return 12; }
+	if (parsbuff == ':') { return 13; }
+	else std::cout << "разделитель не найден";
 }
 void SemanticOperationOne(char temp, int temp2, std::string move ) {
 
