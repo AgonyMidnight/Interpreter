@@ -1,3 +1,5 @@
-﻿  Function.cpp
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Function.cpp(184): warning C4715: WhatIsIt: значение возвращается не при всех путях выполнения
-  Interpreter.vcxproj -> C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Debug\Interpreter.exe
+﻿  Interpreter.cpp
+C:\Users\Zeref\Desktop\git\Interpreter\Interpreter\Interpreter\Interpreter.cpp(60,21): warning C4018:  <: несоответствие типов со знаком и без знака
+C:\Users\Zeref\Desktop\git\Interpreter\Interpreter\Interpreter\Interpreter.cpp(80,24): warning C4018:  <: несоответствие типов со знаком и без знака
+C:\Users\Zeref\Desktop\git\Interpreter\Interpreter\Interpreter\Interpreter.cpp(88,24): warning C4018:  <: несоответствие типов со знаком и без знака
+  Interpreter.vcxproj -> C:\Users\Zeref\Desktop\git\Interpreter\Interpreter\Debug\Interpreter.exe

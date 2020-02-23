@@ -59,7 +59,8 @@ int main()
 
 		for (int i = 0; i < buff.length() || parsBuff != ""; i++) {
 			move = getFindDecision(WhatIsIt(buff[i], Book, Number), status, MyMatrix);
-			
+			//if (i == 75)
+			//	int x = 4 - 5;
 			if ((move.length() <= 2) && (move != "F") && (move != "Z")) {
 				status = stoi(move);
 				parsBuff = parsBuff + buff[i];
@@ -116,12 +117,11 @@ int main()
 					parsBuff = buff[i]; move = ""; 
 					//туточки?
 
-					if (firstParsMove == "11" || status == 14 || status == 7) {	//исправление косяка с двумя подряд разделителями
+					if (status == 7 || status == 11 || status == 14 || status == 16) {	//исправление косяка с двумя подряд разделителями
 						i++;	
 					}
 
 					firstParsMove = ""; secondParsMove = "";
-					if (status == 16) i++; //от сглаза двух палочек
 					--i; continue;
 				}
 				else if (secondParsMove == "P4") {
@@ -133,8 +133,10 @@ int main()
 					
 					getP_Four(parsBuff,FDelimiters,FOut);
 					//status = 0;
-					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
-					if (status == 14 || status == 7) i++;	//исправление косяка с := после пробела
+					if (status == 7 || status == 14 || status == 16) parsBuff = buff[i];													///Исправление с пробелом до :=
+					else parsBuff = "";																		///Исправление с пробелом до :=
+					move = ""; firstParsMove = ""; secondParsMove = "";
+					if (status == 7 || status == 14 || status == 16) i++;	//исправление косяка с := после пробела			ТУТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					--i; continue;
 					
 				}
@@ -142,7 +144,7 @@ int main()
 					getP_Five(parsBuff, FOperations, FOut);
 					//status = 0;
 					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
-					if (!(status == 1 || status == 2 || status == 3))  //траблы с двойной буквой
+					if (!(status == 1 || status == 2 || status == 3 || status == 11))  //траблы с двойной буквой
 						--i;
 					continue;
 					//тут?) при 3
