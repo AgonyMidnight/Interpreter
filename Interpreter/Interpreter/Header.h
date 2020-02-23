@@ -1,7 +1,7 @@
 #pragma once
 
-#define m1 17	//колличесво строк
-#define m2 14	//колличество столбцов
+#define m1 19	//колличесво строк
+#define m2 15	//колличество столбцов
 
 #include <iostream>
 #include <fstream>

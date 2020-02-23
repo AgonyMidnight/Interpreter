@@ -1,5 +1,3 @@
-﻿  Interpreter.cpp
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(60,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(79,24): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Interpreter.cpp(87,24): warning C4018: <: несоответствие типов со знаком и без знака
+﻿  Function.cpp
+C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Interpreter\Function.cpp(184): warning C4715: WhatIsIt: значение возвращается не при всех путях выполнения
   Interpreter.vcxproj -> C:\Users\Agony\Desktop\ЮФУ\IV семестр\!ТЯПиВП\ЛР 1\acrossTable\Interpreter\Debug\Interpreter.exe

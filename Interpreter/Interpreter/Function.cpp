@@ -155,7 +155,7 @@ void setF() {
 }
 
 int WhatIsIt(char parsbuff, char Book[], char Number []) {
-	if (parsbuff == 'e') { return 7; } //экспериментальная функция
+	if (parsbuff == 'e' || parsbuff == 'E') { return 7; } //экспериментальная функция
 	for (int i = 0; i < 52; i++) {
 		if (parsbuff == Book[i]) {
 			return 0;
@@ -169,7 +169,7 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 	if (parsbuff == '.') { return 2; }
 	if (parsbuff == '<') { return 3; }
 	if (parsbuff == '>') { return 4; }
-	if (parsbuff == '+' || parsbuff == '-' || parsbuff == '*' || parsbuff == '^') { return 5; }
+	if (parsbuff == '*' || parsbuff == '^') { return 5; }
 	if (parsbuff == '=') { return 6; }
 	//if (parsbuff == 'e') { return 7; }
 	if (parsbuff == '\'') { return 8; }
@@ -179,6 +179,7 @@ int WhatIsIt(char parsbuff, char Book[], char Number []) {
 	if (parsbuff == '\n') { return 11; }
 	if (parsbuff == '\0') { return 12; }
 	if (parsbuff == ':') { return 13; }
+	if(parsbuff == '+' || parsbuff == '-'){ return 14; }
 	else std::cout << "разделитель не найден";
 }
 void SemanticOperationOne(char temp, int temp2, std::string move ) {

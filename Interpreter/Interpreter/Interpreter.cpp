@@ -171,8 +171,8 @@ int main()
 
 	std::cout << "U R sun" << std::endl;
 	system("Out.txt");
-	//system("Number.txt");
+	system("Number.txt");
 	//system("String.txt");
-	system("Identity.txt");
+	//system("Identity.txt");
 }
 
