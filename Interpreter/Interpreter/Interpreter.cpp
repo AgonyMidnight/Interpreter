@@ -144,7 +144,7 @@ int main()
 					getP_Five(parsBuff, FOperations, FOut);
 					//status = 0;
 					parsBuff = buff[i]; move = ""; firstParsMove = ""; secondParsMove = "";
-					if (!(status == 1 || status == 2 || status == 3 || status == 11))  //траблы с двойной буквой
+					if (!(status == 1 || status == 2 || status == 3 || status == 15 || status == 11))  //траблы с двойной буквой
 						--i;
 					continue;
 					//тут?) при 3
