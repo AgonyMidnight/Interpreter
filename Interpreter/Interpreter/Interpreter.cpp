@@ -116,7 +116,7 @@ int main()
 					parsBuff = buff[i]; move = ""; 
 					//туточки?
 
-					if (firstParsMove == "11" || status == 14) {	//исправление косяка с двумя подряд разделителями
+					if (firstParsMove == "11" || status == 14 || status == 7) {	//исправление косяка с двумя подряд разделителями
 						i++;	
 					}
 
@@ -134,7 +134,7 @@ int main()
 					getP_Four(parsBuff,FDelimiters,FOut);
 					//status = 0;
 					parsBuff = ""; move = ""; firstParsMove = ""; secondParsMove = "";
-					if (status == 14) i++;	//исправление косяка с := после пробела
+					if (status == 14 || status == 7) i++;	//исправление косяка с := после пробела
 					--i; continue;
 					
 				}
